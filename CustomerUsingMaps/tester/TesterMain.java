@@ -1,7 +1,12 @@
 package tester;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Scanner;
+import java.util.TreeMap;
+
 import core1.*;
 import custom_exceptn.CustomerHandlingExcptn;
 
@@ -53,7 +58,7 @@ public class TesterMain
                         System.out.println("New password updated");
                         break;
 
-                        case 4:
+                        case 4://remove
                         System.out.println("To Unsubscribe a customer");
                         System.out.println("Enter the email id");
                         cList=customers.remove(sc.next());
@@ -67,6 +72,22 @@ public class TesterMain
                         for(Customer c: customers.values())
                         System.out.println(c);
                         break;
+                        
+                        case 6://sorting using email id
+                        	TreeMap<String,Customer> treeClist=new TreeMap<String,Customer>(customers);
+                        	System.out.println("All details printed in sorted order a/c email");
+                        	for(Customer c : treeClist.values())
+                        		System.out.println(c);
+                            break;
+                        
+                        case 7://sorting as per dob-->comparator-->compare()
+                        	ArrayList<Customer> list=new ArrayList<Customer>(customers.values());
+                        	Comparator<Customer> compare=(c1,c2)-> c1.getDob().compareTo(c2.getDob());
+                        	Collections.sort(list,compare);
+                        	System.out.println("customer sorted as per dob");
+                        	list.forEach(c -> System.out.println(c));
+                        	break;
+                        	
 
                         case 0:
                         exit=true;
